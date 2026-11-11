@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product and Sales Management</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <h2>ProductSales</h2>
+            <p class="subtitle">Management System</p>
+
+            
+<nav>
+    <a href="/">Dashboard</a>
+    <a href="/products">Products</a>
+    <a href="/sales">Sales</a>
+    <a href="/sales-history">Sales History</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <header>
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome to Product and Sales Management System!</p>
+                </div>
+
+               <a href="/admin-profile" class="admin">Admin</a>
+            </header>
+
+            <!-- STATISTICS -->
+            <section class="cards">
+
+               <div class="card">
+    <h3>Total Products</h3>
+    <h2>{{ total_products }}</h2>
+    <p>Registered Products</p>
+</div>
+
+<div class="card">
+    <h3>Total Sales</h3>
+    <h2>₱{{ "%.2f"|format(total_sales) }}</h2>
+    <p>Overall Sales</p>
+</div>
+
+<div class="card">
+    <h3>Available Stocks</h3>
+    <h2>{{ low_stock }}</h2>
+    <p>Products with 5 or fewer stocks</p>
+</div>
+
+<div class="card">
+    <h3>Transactions</h3>
+    <h2>{{ total_transactions }}</h2>
+    <p>Sales Records</p>
+</div>
+
+            </section>
+
+            <!-- RECENT SALES -->
+            <section class="sales-section">
+
+                <h2>Recent Sales</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sale ID</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="5">No sales records yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

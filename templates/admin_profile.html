@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile - ProductSales</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .profile-container {
+            max-width: 850px;
+            margin: 35px auto;
+        }
+
+        .profile-banner {
+            background: linear-gradient(135deg, #54258a, #8151b5);
+            height: 170px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .profile-content {
+            background: white;
+            padding: 0 35px 35px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 5px 20px rgba(84, 37, 138, 0.10);
+        }
+
+        .avatar {
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            background: #eee5fa;
+            border: 6px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #54258a;
+            font-size: 40px;
+            font-weight: bold;
+            margin-top: -55px;
+            position: relative;
+        }
+
+        .profile-name {
+            color: #54258a;
+            font-size: 25px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .profile-description {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .details-title {
+            color: #54258a;
+            font-size: 18px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .detail-box {
+            background: #f8f5fc;
+            border: 1px solid #eee5fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .detail-label {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .detail-value {
+            color: #49365e;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #e2f7e9;
+            color: #238344;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .profile-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .profile-button {
+            background: #54258a;
+            color: white;
+            padding: 12px 22px;
+            text-decoration: none;
+            border-radius: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .profile-button:hover {
+            background: #3e176b;
+        }
+
+        .back-button {
+            background: #eee5fa;
+            color: #54258a;
+        }
+
+        .back-button:hover {
+            background: #dfd0f2;
+        }
+
+        @media (max-width: 600px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-content {
+                padding: 0 20px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <h2>ProductSales</h2>
+        <p class="subtitle">Management System</p>
+
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="/products">Products</a>
+            <a href="/sales">Sales</a>
+            <a href="/sales-history">Sales History</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header>
+            <div>
+                <h1>Admin Profile</h1>
+                <p>Manage your administrator account.</p>
+            </div>
+        </header>
+
+        <div class="profile-container">
+
+            <div class="profile-banner"></div>
+
+            <div class="profile-content">
+
+                <div class="avatar">A</div>
+
+                <h2 class="profile-name">Administrator</h2>
+                <p class="profile-description">
+                    Product and Sales Management System
+                </p>
+
+                <h3 class="details-title">Account Information</h3>
+
+                <div class="details-grid">
+
+                    <div class="detail-box">
+                        <p class="detail-label">Username</p>
+                        <p class="detail-value">admin</p>
+                    </div>
+
+                    <div class="detail-box">
+                        <p class="detail-label">Account Type</p>
+                        <p class="detail-value">Administrator</p>
+                    </div>
+
+                    <div class="detail-box">
+                        <p class="detail-label">Account Status</p>
+                        <span class="status-badge">● Active</span>
+                    </div>
+
+                    <div class="detail-box">
+                        <p class="detail-label">System Access</p>
+                        <p class="detail-value">Full Access</p>
+                    </div>
+
+                </div>
+
+                <div class="profile-actions">
+                    <a href="/" class="profile-button back-button">
+                        Back to Dashboard
+                    </a>
+
+                    <a href="/logout" class="profile-button">
+                        Logout
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

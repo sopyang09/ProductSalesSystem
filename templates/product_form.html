@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <h2>ProductSales</h2>
+        <p class="subtitle">Management System</p>
+
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="/products" class="active">Products</a>
+            <a href="#">Sales</a>
+            <a href="#">Sales History</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header>
+            <div>
+                <h1>{{ title }}</h1>
+                <p>Enter the product information below.</p>
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <section class="sales-section">
+
+            <form method="POST" class="product-form">
+
+                <label>Product Name</label>
+                <input
+                    type="text"
+                    name="product_name"
+                    placeholder="Enter product name"
+                    value="{{ product.product_name if product else '' }}"
+                    required
+                >
+
+                <label>Price (₱)</label>
+                <input
+                    type="number"
+                    name="price"
+                    step="0.01"
+                    min="0"
+                    placeholder="Enter product price"
+                    value="{{ product.price if product else '' }}"
+                    required
+                >
+
+                <label>Available Stock</label>
+                <input
+                    type="number"
+                    name="stock"
+                    min="0"
+                    step="1"
+                    placeholder="Enter stock quantity"
+                    value="{{ product.stock if product else '' }}"
+                    required
+                >
+
+                <button type="submit" class="add-button">
+                    Save Product
+                </button>
+
+                <a href="/products" class="cancel-button">
+                    Cancel
+                </a>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

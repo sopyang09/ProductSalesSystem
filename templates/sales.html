@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Management</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <h2>ProductSales</h2>
+        <p class="subtitle">Management System</p>
+
+      
+<nav>
+    <a href="/">Dashboard</a>
+    <a href="/products">Products</a>
+    <a href="/sales">Sales</a>
+    <a href="/sales-history">Sales History</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header>
+            <div>
+                <h1>Sales Management</h1>
+                <p>Manage and process your product sales.</p>
+            </div>
+            <a href="{{ url_for('admin_profile') }}" class="admin">
+    Admin
+</a>
+        </header>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <section class="sales-section">
+
+            <div class="product-header">
+                <h2>New Sales Transaction</h2>
+            </div>
+
+            <div class="form-card">
+
+                <div class="form-heading">
+                    <h2>Process Product Sale</h2>
+                    <p>Select a product and enter the quantity to complete a sale.</p>
+                </div>
+
+                <form method="POST" action="/sales">
+
+                    <div class="form-group">
+                        <label for="product_id">Select Product</label>
+
+                        <select name="product_id" id="product_id" required>
+                            <option value="">-- Choose Product --</option>
+
+                            {% for product in products %}
+                            <option value="{{ product.id }}">
+                                {{ product.product_name }}
+                                - ₱{{ "%.2f"|format(product.price) }}
+                                (Stock: {{ product.stock }})
+                            </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+
+                        <input
+                            type="number"
+                            name="quantity"
+                            id="quantity"
+                            min="1"
+                            placeholder="Enter quantity"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="add-button">
+                        Process Sale
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

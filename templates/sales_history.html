@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales History</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>ProductSales</h2>
+        <p class="subtitle">Management System</p>
+
+        
+<nav>
+    <a href="/">Dashboard</a>
+    <a href="/products">Products</a>
+    <a href="/sales">Sales</a>
+    <a href="/sales-history">Sales History</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header>
+            <div>
+                <h1>Sales History</h1>
+                <p>View all completed sales transactions.</p>
+            </div>
+
+            <a href="{{ url_for('admin_profile') }}" class="admin">
+    Admin
+</a>
+        </header>
+
+        <!-- SALES TABLE -->
+        <section class="sales-section">
+
+            <h2>Transaction Records</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Sale ID</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Total Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for sale in sales %}
+
+                        <tr>
+                            <td>{{ sale.id }}</td>
+                            <td>{{ sale.product_name }}</td>
+                            <td>{{ sale.quantity }}</td>
+                            <td>₱{{ "%.2f"|format(sale.total) }}</td>
+                            <td>{{ sale.sale_date }}</td>
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="5">No sales records found.</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
