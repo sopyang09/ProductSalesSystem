@@ -40,26 +40,30 @@ def create_table():
         )
     """)
 
+    # Check if products table is empty
+    product_count = connection.execute(
+        "SELECT COUNT(*) FROM products"
+    ).fetchone()[0]
+
+    # Automatically insert sample products
+    if product_count == 0:
+        sample_products = [
+            ("Notebook", 25.00, 30),
+            ("Ballpen", 12.50, 50),
+            ("Folder", 15.00, 20),
+            ("Bond Paper", 5.00, 100),
+            ("Pencil", 10.00, 40)
+        ]
+
+        connection.executemany("""
+            INSERT INTO products (product_name, price, stock)
+            VALUES (?, ?, ?)
+        """, sample_products)
+
     connection.commit()
     connection.close()
 
 
 if __name__ == "__main__":
     create_table()
-    print("Database tables created successfully!")
-
-if __name__ == "__main__":
-    create_table()
-
-    connection = get_connection()
-
-    products = connection.execute(
-        "SELECT * FROM products"
-    ).fetchall()
-
-    print("PRODUCTS FOUND:", len(products))
-
-    for product in products:
-        print(dict(product))
-
-    connection.close()
+    print("Database tables and sample products are ready!")
